@@ -345,3 +345,61 @@ Vehicle (abstract)
 ---
 
 <!-- নতুন feature add হলে এখানে নিচে একইভাবে যোগ করা হবে -->
+
+---
+
+## ✅ Feature 6.2 — Add Vehicle (Admin)
+**Date:** 2026-07-22
+
+### কী করা হয়েছে:
+- `service/VehicleService.java` তৈরি — `ArrayList<Vehicle>` ও `addVehicle()` method সহ।
+- Admin Login সফল হলে এখন Admin Menu খোলে।
+- Admin Menu থেকে "Add Vehicle" select করলে Car বা Bike যোগ করা যায়।
+- Common fields (brand, model, rent/day) ও type-specific fields (seat/fuel বা engineCC) console থেকে নেওয়া হয়।
+- Successful add হলে `"Vehicle Added Successfully!"` দেখায়।
+
+### Admin Flow:
+```
+Main Menu → (1) Admin Login
+  → Username / Password
+  → [✔] Login Successful!
+  → Admin Menu:
+       1. Add Vehicle
+       0. Back
+  → (1) Add Vehicle:
+       1. Car  → brand, model, rent/day, seat, fuel
+       2. Bike → brand, model, rent/day, engineCC
+  → [✔] Vehicle Added Successfully!
+```
+
+### Files:
+| File | পরিবর্তন |
+|------|-----------|
+| `service/VehicleService.java` | **নতুন** — ArrayList, auto-ID, `addVehicle()` |
+| `ui/MainMenu.java` | **Modified** — VehicleService field, `showAdminMenu()`, login → Admin Menu |
+
+### গুরুত্বপূর্ণ Design সিদ্ধান্ত:
+- `showAdminMenu()` একটি আলাদা private method — `while(inAdminMenu)` loop দিয়ে চলে।
+- Admin Login সফল হলে `showAdminMenu()` call হয়; Back দিলে Main Menu-তে ফেরে।
+- `Scanner` pass করা হয় — একটিমাত্র Scanner সব জায়গায় ব্যবহার হয়।
+- `available = true` দিয়ে vehicle add হয় — Rent করলে পরে `false` হবে।
+- View Vehicle ও Rent Vehicle এখনো implement হয়নি।
+
+### Development Checklist:
+
+| # | Item | Status |
+|---|------|--------|
+| 1 | `VehicleService.java` created | ✅ |
+| 2 | `ArrayList<Vehicle>` implemented | ✅ |
+| 3 | `addVehicle()` implemented | ✅ |
+| 4 | Car creation implemented | ✅ |
+| 5 | Bike creation implemented | ✅ |
+| 6 | Admin Menu added | ✅ |
+| 7 | Add Vehicle connected | ✅ |
+| 8 | Success message displayed | ✅ |
+| 9 | Code compiles successfully | ✅ **BUILD SUCCESS** |
+| 10 | No future features implemented | ✅ |
+
+---
+
+<!-- নতুন feature add হলে এখানে নিচে একইভাবে যোগ করা হবে -->
