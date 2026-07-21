@@ -289,3 +289,59 @@ Person
 ---
 
 <!-- নতুন feature add হলে এখানে নিচে একইভাবে যোগ করা হবে -->
+
+---
+
+## ✅ Feature 6.1 — Vehicle Model Hierarchy
+**Date:** 2026-07-22
+
+### কী করা হয়েছে:
+- `model/Vehicle.java` তৈরি — abstract base class, 5টি common field সহ।
+- `model/Car.java` তৈরি — Vehicle extends করে, `seatCapacity` ও `fuelType` যোগ।
+- `model/Bike.java` তৈরি — Vehicle extends করে, `engineCC` যোগ।
+- কোনো business logic নেই — শুধু model structure।
+
+### Inheritance Hierarchy:
+```
+Vehicle (abstract)
+├── Car    → seatCapacity, fuelType
+└── Bike   → engineCC
+```
+
+### Fields Summary:
+| Class | Fields |
+|-------|--------|
+| `Vehicle` | `vehicleId`, `brand`, `model`, `rentPerDay`, `available` |
+| `Car` | ↑ + `seatCapacity`, `fuelType` |
+| `Bike` | ↑ + `engineCC` |
+
+### Files:
+| File | পরিবর্তন |
+|------|-----------|
+| `model/Vehicle.java` | **নতুন** — abstract base class |
+| `model/Car.java` | **নতুন** — extends Vehicle |
+| `model/Bike.java` | **নতুন** — extends Vehicle |
+
+### গুরুত্বপূর্ণ Design সিদ্ধান্ত:
+- `Vehicle` abstract করা হয়েছে — কেউ সরাসরি `new Vehicle()` করতে পারবে না।
+- `available` field boolean — পরে rent করলে `false` হবে, return করলে `true`।
+- `VehicleService` এখনো তৈরি হয়নি — পরবর্তী feature-এ হবে।
+
+### Development Checklist:
+
+| # | Item | Status |
+|---|------|--------|
+| 1 | `Vehicle.java` created | ✅ |
+| 2 | Vehicle declared abstract | ✅ |
+| 3 | Car extends Vehicle | ✅ |
+| 4 | Bike extends Vehicle | ✅ |
+| 5 | Constructors implemented | ✅ |
+| 6 | Getters/Setters implemented | ✅ |
+| 7 | Encapsulation maintained | ✅ |
+| 8 | Constructor chaining using `super()` | ✅ |
+| 9 | No business logic added | ✅ |
+| 10 | Code compiles successfully | ✅ **BUILD SUCCESS** |
+
+---
+
+<!-- নতুন feature add হলে এখানে নিচে একইভাবে যোগ করা হবে -->
