@@ -179,4 +179,62 @@ Password      : pass123
 
 ---
 
+## ✅ Feature 5 — Customer Login
+**Date:** 2026-07-22
+
+### কী করা হয়েছে:
+- `service/CustomerService.java`-এ `loginCustomer()` method যোগ করা হয়েছে।
+- Console থেকে username ও password নেওয়া হয়।
+- `ArrayList<Customer>` loop করে match খোঁজা হয়।
+- Match পেলে → `"Login Successful!"`, না পেলে → `"Invalid Username or Password."`
+- `ui/MainMenu.java`-এ option 2 এখন Customer Login করে।
+- Login attempt শেষে Main Menu-তে ফিরে আসে।
+
+### Files:
+| File | পরিবর্তন |
+|------|-----------|
+| `service/CustomerService.java` | **Modified** — `loginCustomer()` method যোগ |
+| `ui/MainMenu.java` | **Modified** — case 2 → `customerService.loginCustomer(scanner)` call |
+
+### গুরুত্বপূর্ণ Design সিদ্ধান্ত:
+- Enhanced `for` loop দিয়ে ArrayList search — beginner-friendly ও readable।
+- Match পাওয়া মাত্র `return` করা হয় — অপ্রয়োজনীয় iteration বন্ধ।
+- Customer Dashboard তৈরি করা হয়নি — পরবর্তী feature-এ হবে।
+- File handling ব্যবহার করা হয়নি।
+
+### Output (সঠিক login):
+```
+------------------------------------
+        CUSTOMER LOGIN
+------------------------------------
+Username : john123
+Password : pass123
+
+[✔] Login Successful!
+```
+
+### Output (ভুল login):
+```
+[✘] Invalid Username or Password.
+```
+
+---
+
+## ✅ Feature 5 — Development Checklist
+
+| # | Item | Status |
+|---|------|--------|
+| 1 | `loginCustomer()` method added | ✅ |
+| 2 | Username validation implemented | ✅ |
+| 3 | Password validation implemented | ✅ |
+| 4 | MainMenu option 2 connected | ✅ |
+| 5 | Login success message displayed | ✅ |
+| 6 | Login failure message displayed | ✅ |
+| 7 | Returns to Main Menu | ✅ |
+| 8 | No file handling used | ✅ |
+| 9 | No future features implemented | ✅ |
+| 10 | Code compiles successfully | ✅ **BUILD SUCCESS** |
+
+---
+
 <!-- নতুন feature add হলে এখানে নিচে একইভাবে যোগ করা হবে -->

@@ -53,4 +53,31 @@ public class CustomerService {
     public ArrayList<Customer> getCustomerList() {
         return customerList;
     }
+
+    /**
+     * Asks for username and password, then searches the ArrayList for a match.
+     */
+    public void loginCustomer(Scanner scanner) {
+        System.out.println("\n------------------------------------");
+        System.out.println("        CUSTOMER LOGIN              ");
+        System.out.println("------------------------------------");
+
+        System.out.print("Username : ");
+        String username = scanner.nextLine().trim();
+
+        System.out.print("Password : ");
+        String password = scanner.nextLine().trim();
+
+        // Search for a matching customer in the list
+        for (Customer customer : customerList) {
+            if (customer.getUsername().equals(username) &&
+                customer.getPassword().equals(password)) {
+                System.out.println("\n[✔] Login Successful!\n");
+                return;
+            }
+        }
+
+        // No match found
+        System.out.println("\n[✘] Invalid Username or Password.\n");
+    }
 }

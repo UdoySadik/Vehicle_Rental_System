@@ -42,7 +42,7 @@ public class MainMenu {
                     handleAdminLogin();
                     break;
                 case 2:
-                    System.out.println("\n>> Feature Coming Soon...\n");
+                    customerService.loginCustomer(scanner);
                     break;
                 case 3:
                     customerService.registerCustomer(scanner);
