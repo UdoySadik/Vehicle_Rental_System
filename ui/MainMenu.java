@@ -13,12 +13,14 @@ public class MainMenu {
     private final Scanner scanner;
     private final CustomerService customerService;
     private final VehicleService vehicleService;
+    private final Admin admin;
 
     // Constructor initializes Scanner and services
     public MainMenu() {
-        this.scanner         = new Scanner(System.in);
+        this.scanner = new Scanner(System.in);
         this.customerService = new CustomerService();
-        this.vehicleService  = new VehicleService();
+        this.vehicleService = new VehicleService();
+        this.admin = new Admin();
     }
 
     // Starts the main menu loop
@@ -96,38 +98,53 @@ public class MainMenu {
         System.out.print("Password: ");
         String password = scanner.nextLine().trim();
 
-        Admin admin = new Admin();
-
         if (admin.login(username, password)) {
             System.out.println("\n[✔] Login Successful!\n");
-            showAdminMenu();   // Open Admin Menu after successful login
+            adminMenu(); // Open Admin Menu after successful login
         } else {
             System.out.println("\n[✘] Invalid Username or Password.\n");
         }
     }
 
     // Displays the Admin Menu and handles admin options
-    private void showAdminMenu() {
+    private void adminMenu() {
+
         boolean inAdminMenu = true;
 
         while (inAdminMenu) {
-            System.out.println("------------------------------------");
-            System.out.println("           ADMIN MENU              ");
-            System.out.println("------------------------------------");
+
+            System.out.println("========================");
+            System.out.println("      ADMIN MENU");
+            System.out.println("========================");
             System.out.println("  1. Add Vehicle");
+            System.out.println("  2. View Vehicles");
             System.out.println("  0. Back");
-            System.out.println("------------------------------------");
+            System.out.println("========================");
             System.out.print("Enter your choice: ");
 
             String input = scanner.nextLine().trim();
 
-            switch (input) {
-                case "1":
+            if (!isInteger(input)) {
+                System.out.println("\n[!] Invalid input. Please enter a number.\n");
+                continue;
+            }
+
+            int choice = Integer.parseInt(input);
+
+            switch (choice) {
+
+                case 1:
                     vehicleService.addVehicle(scanner);
                     break;
-                case "0":
+
+                case 2:
+                    vehicleService.viewVehicles();
+                    break;
+
+                case 0:
                     inAdminMenu = false;
                     break;
+
                 default:
                     System.out.println("\n[!] Invalid choice. Please try again.\n");
             }
@@ -136,7 +153,8 @@ public class MainMenu {
 
     // Helper: checks if a string is a valid integer
     private boolean isInteger(String input) {
-        if (input == null || input.isEmpty()) return false;
+        if (input == null || input.isEmpty())
+            return false;
         try {
             Integer.parseInt(input);
             return true;

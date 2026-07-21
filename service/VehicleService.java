@@ -77,4 +77,34 @@ public class VehicleService {
     public ArrayList<Vehicle> getVehicleList() {
         return vehicleList;
     }
+
+    /**
+     * Displays all vehicles stored in the ArrayList.
+     * Uses instanceof to identify Car or Bike type (polymorphism).
+     */
+    public void viewVehicles() {
+        System.out.println("\n------------------------------------");
+        System.out.println("         ALL VEHICLES               ");
+        System.out.println("------------------------------------");
+
+        if (vehicleList.isEmpty()) {
+            System.out.println("  No vehicles available.\n");
+            return;
+        }
+
+        // Iterate through ArrayList<Vehicle> — polymorphism in action
+        for (Vehicle vehicle : vehicleList) {
+            String type         = (vehicle instanceof Car)  ? "Car"  : "Bike";
+            String availability = vehicle.isAvailable()     ? "Available" : "Rented";
+
+            System.out.println("  ID          : " + vehicle.getVehicleId());
+            System.out.println("  Type        : " + type);
+            System.out.println("  Brand       : " + vehicle.getBrand());
+            System.out.println("  Model       : " + vehicle.getModel());
+            System.out.println("  Rent/Day    : " + vehicle.getRentPerDay() + " BDT");
+            System.out.println("  Availability: " + availability);
+            System.out.println("  ------------------------------------");
+        }
+        System.out.println();
+    }
 }

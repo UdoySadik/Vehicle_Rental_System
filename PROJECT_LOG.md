@@ -403,3 +403,109 @@ Main Menu → (1) Admin Login
 ---
 
 <!-- নতুন feature add হলে এখানে নিচে একইভাবে যোগ করা হবে -->
+
+---
+
+## ✅ Feature 6.3 — Admin Menu Refactor
+**Date:** 2026-07-22
+
+### কী করা হয়েছে:
+- `showAdminMenu()` rename করে `adminMenu()` করা হয়েছে — naming convention consistent।
+- Admin Menu banner `====` style-এ update করা হয়েছে।
+- Behavior ও logic সম্পূর্ণ অপরিবর্তিত।
+
+### Admin Menu Output:
+```
+========================
+      ADMIN MENU
+========================
+  1. Add Vehicle
+  0. Back
+========================
+Enter your choice:
+```
+
+### Files:
+| File | পরিবর্তন |
+|------|-----------|
+| `ui/MainMenu.java` | **Modified** — `showAdminMenu()` → `adminMenu()`, banner style update |
+
+### Development Checklist:
+
+| # | Item | Status |
+|---|------|--------|
+| 1 | Admin Menu created | ✅ |
+| 2 | `adminMenu()` method added | ✅ |
+| 3 | Admin Login opens Admin Menu | ✅ |
+| 4 | Add Vehicle connected | ✅ |
+| 5 | Back option works | ✅ |
+| 6 | Returns to Main Menu correctly | ✅ |
+| 7 | No future features added | ✅ |
+| 8 | Code compiles successfully | ✅ **BUILD SUCCESS** |
+
+---
+
+<!-- নতুন feature add হলে এখানে নিচে একইভাবে যোগ করা হবে -->
+
+---
+
+## ✅ Feature 7.1 — View All Vehicles
+**Date:** 2026-07-22
+
+### কী করা হয়েছে:
+- `service/VehicleService.java`-এ `viewVehicles()` method যোগ করা হয়েছে।
+- সব vehicle-এর ID, Type, Brand, Model, Rent/Day ও Availability দেখায়।
+- List empty হলে `"No vehicles available."` দেখায়।
+- `instanceof` দিয়ে Car/Bike identify করা হয়।
+- Admin Menu-তে option 2 (View Vehicles) যোগ করা হয়েছে।
+
+### Output Example:
+```
+------------------------------------
+         ALL VEHICLES
+------------------------------------
+  ID          : 1
+  Type        : Car
+  Brand       : Toyota
+  Model       : Corolla
+  Rent/Day    : 2500.0 BDT
+  Availability: Available
+  ------------------------------------
+  ID          : 2
+  Type        : Bike
+  Brand       : Yamaha
+  Model       : R15
+  Rent/Day    : 800.0 BDT
+  Availability: Available
+  ------------------------------------
+```
+
+### Files:
+| File | পরিবর্তন |
+|------|-----------|
+| `service/VehicleService.java` | **Modified** — `viewVehicles()` method যোগ |
+| `ui/MainMenu.java` | **Modified** — Admin Menu-তে option 2 যোগ; `case 2` → `viewVehicles()` |
+
+### গুরুত্বপূর্ণ Design সিদ্ধান্ত:
+- `ArrayList<Vehicle>` loop করে — polymorphism ব্যবহার, প্রতিটি vehicle সাধারণ `Vehicle` reference দিয়ে access।
+- `instanceof Car` দিয়ে type identify — `"Car"` বা `"Bike"` string তৈরি।
+- `isAvailable()` → `"Available"` / `"Rented"` — future rent feature-এর জন্য ready।
+
+### Development Checklist:
+
+| # | Item | Status |
+|---|------|--------|
+| 1 | `viewVehicles()` method created | ✅ |
+| 2 | Displays all vehicles | ✅ |
+| 3 | Shows vehicle type (Car/Bike) | ✅ |
+| 4 | Shows availability status | ✅ |
+| 5 | Handles empty vehicle list | ✅ |
+| 6 | Admin Menu updated | ✅ |
+| 7 | Option 2 connected | ✅ |
+| 8 | Uses `ArrayList<Vehicle>` | ✅ |
+| 9 | Uses polymorphism + `instanceof` | ✅ |
+| 10 | Code compiles successfully | ✅ **BUILD SUCCESS** |
+
+---
+
+<!-- নতুন feature add হলে এখানে নিচে একইভাবে যোগ করা হবে -->
