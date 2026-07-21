@@ -1,37 +1,24 @@
 package model;
 
 /**
- * Customer model class with encapsulation.
+ * Customer extends Person.
+ * Only contains customer-specific field: phoneNumber.
  */
-public class Customer {
+public class Customer extends Person {
 
-    private int customerId;
-    private String fullName;
+    // Customer-specific field
     private String phoneNumber;
-    private String username;
-    private String password;
 
-    // Constructor
-    public Customer(int customerId, String fullName, String phoneNumber,
+    // Constructor — common fields go to Person via super()
+    public Customer(int id, String fullName, String phoneNumber,
                     String username, String password) {
-        this.customerId   = customerId;
-        this.fullName     = fullName;
-        this.phoneNumber  = phoneNumber;
-        this.username     = username;
-        this.password     = password;
+        super(id, fullName, username, password);
+        this.phoneNumber = phoneNumber;
     }
 
-    // ---------- Getters ----------
-    public int    getCustomerId()  { return customerId; }
-    public String getFullName()    { return fullName; }
+    // ---------- Getter ----------
     public String getPhoneNumber() { return phoneNumber; }
-    public String getUsername()    { return username; }
-    public String getPassword()    { return password; }
 
-    // ---------- Setters ----------
-    public void setCustomerId(int customerId)      { this.customerId  = customerId; }
-    public void setFullName(String fullName)        { this.fullName    = fullName; }
-    public void setPhoneNumber(String phoneNumber)  { this.phoneNumber = phoneNumber; }
-    public void setUsername(String username)        { this.username    = username; }
-    public void setPassword(String password)        { this.password    = password; }
+    // ---------- Setter ----------
+    public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
 }

@@ -238,3 +238,54 @@ Password : pass123
 ---
 
 <!-- নতুন feature add হলে এখানে নিচে একইভাবে যোগ করা হবে -->
+
+---
+
+## ✅ Feature 5.5 — OOP Refactor (Person Base Class)
+**Date:** 2026-07-22
+
+### কী করা হয়েছে:
+- `model/Person.java` তৈরি — common fields (`id`, `fullName`, `username`, `password`) এখানে রাখা হয়েছে।
+- `Admin` এখন `Person` extends করে — duplicate fields সরানো হয়েছে।
+- `Customer` এখন `Person` extends করে — শুধু `phoneNumber` Customer-specific field হিসেবে রেখেছে।
+- কোনো existing behavior পরিবর্তন হয়নি — Admin Login, Customer Login, Customer Registration সব আগের মতো কাজ করে।
+
+### Inheritance Hierarchy:
+```
+Person
+├── Admin
+└── Customer
+```
+
+### Files:
+| File | পরিবর্তন |
+|------|-----------|
+| `model/Person.java` | **নতুন** — base class: `id`, `fullName`, `username`, `password` |
+| `model/Admin.java` | **Refactored** — extends Person, `super(0, "Admin", "admin", "admin123")` |
+| `model/Customer.java` | **Refactored** — extends Person, শুধু `phoneNumber` রেখেছে |
+
+### গুরুত্বপূর্ণ Design সিদ্ধান্ত:
+- Admin-এর hardcoded credentials `super()` call-এ pass করা হয় — no-arg constructor এখনো কাজ করে।
+- `Admin.login()` এখন `getUsername()` ও `getPassword()` (inherited) ব্যবহার করে।
+- `CustomerService` একটুও পরিবর্তন হয়নি — `getUsername()`, `getPassword()` এখন Person থেকে inherit হয়।
+- `MainMenu` একটুও পরিবর্তন হয়নি।
+
+### Development Checklist:
+
+| # | Item | Status |
+|---|------|--------|
+| 1 | `Person.java` created | ✅ |
+| 2 | Common fields moved to Person | ✅ |
+| 3 | Admin extends Person | ✅ |
+| 4 | Customer extends Person | ✅ |
+| 5 | Constructors updated using `super()` | ✅ |
+| 6 | Existing functionality unchanged | ✅ |
+| 7 | Customer Registration still works | ✅ |
+| 8 | Customer Login still works | ✅ |
+| 9 | Admin Login still works | ✅ |
+| 10 | Code compiles successfully | ✅ **BUILD SUCCESS** |
+| 11 | No future features added | ✅ |
+
+---
+
+<!-- নতুন feature add হলে এখানে নিচে একইভাবে যোগ করা হবে -->

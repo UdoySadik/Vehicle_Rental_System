@@ -1,19 +1,21 @@
 package model;
 
 /**
- * Admin model class with default credentials and login logic.
+ * Admin extends Person.
+ * Hardcoded credentials are passed to Person via super().
  */
-public class Admin {
+public class Admin extends Person {
 
-    // Default admin credentials (hardcoded for now)
-    private final String username = "admin";
-    private final String password = "admin123";
+    // Pass hardcoded admin credentials to Person's constructor
+    public Admin() {
+        super(0, "Admin", "admin", "admin123");
+    }
 
     /**
      * Checks if the provided credentials match the admin credentials.
      * @return true if login is successful, false otherwise
      */
     public boolean login(String enteredUsername, String enteredPassword) {
-        return username.equals(enteredUsername) && password.equals(enteredPassword);
+        return getUsername().equals(enteredUsername) && getPassword().equals(enteredPassword);
     }
 }
